@@ -12,17 +12,19 @@ public class GameLoop implements Runnable {
   
   public boolean running = false;
   
-  public final double UPDATE_CAP = 0.016666666666666666D;
+  public final double FRAMERATE = 60.0D;
   
-  public int width = 160;
+  public final double UPDATE_CAP = 1.0/FRAMERATE;
   
-  public int height = 144;
+  public int width = 320;
   
-  public float scale = 3.0F;
+  public int height = 240;
+  
+  public float scale = 2.0F;
   
   public String title = "RealDreed Engine V0.0.0.1-experimental";
   
-  public String iconDir= "assets/icon/icon.png"; // default Icon for program
+  public String iconDir= "assets/icon/icon.jpg"; // default Icon for program
   
   public void start() {
     this.window = new FormClass(this);
@@ -56,8 +58,8 @@ public class GameLoop implements Runnable {
       lastTime = firstTime;
       unprocessedTime += passedTime;
       frameTime += passedTime;
-      while (unprocessedTime >= 0.016666666666666666D) {
-        unprocessedTime -= 0.016666666666666666D;
+      while (unprocessedTime >= UPDATE_CAP) {
+        unprocessedTime -= UPDATE_CAP;
         render = true;
         if (frameTime >= 1.0D) {
           frameTime = 0.0D;

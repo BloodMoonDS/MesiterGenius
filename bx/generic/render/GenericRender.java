@@ -17,9 +17,10 @@ public class GenericRender {
   }
   
   public void clear() {
-    for (int i = 0; i < this.p.length; i++)
-    	this.p[i] = 0x000000;
-      //this.p[i] = this.p[i] + i; 
+    for (int i = 0; i < this.p.length; i++) {
+      //this.p[i] = 0x000000;
+      //this.p[i] = this.p[i] +i; 
+    }
   }
 }
 

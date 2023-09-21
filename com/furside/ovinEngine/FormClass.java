@@ -22,7 +22,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 public class FormClass extends JFrame {
-    public JFrame frame;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	public JFrame frame;
     public int SizeX=320;
     public int SizeY=240;
     public String Title = "Window";
@@ -42,7 +46,7 @@ public class FormClass extends JFrame {
     }
     public void setWebIcon(String Url) throws Exception{
         // WARNING MALFUNCTIONING
-        String destinationFile = "/assets/icon/icon.jpg";
+        String destinationFile = "assets/icon/icon.jpg";
         URL Cururl = new URL(destinationFile);
         saveImage(Url, destinationFile);
         BufferedImage image = null;

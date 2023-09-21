@@ -22,7 +22,7 @@ public class GameLoop implements Runnable {
   
   public String title = "RealDreed Engine V0.0.0.1-experimental";
   
-  public String iconDir= "assets/icon/icon.png"; // default Icon for program
+  public String iconDir= "assets/icon/icon.jpg"; // default Icon for program
   
   public void start() {
     this.window = new FormClass(this);
@@ -118,6 +118,8 @@ public class GameLoop implements Runnable {
   
   public void setTitle(String title) {
     this.title = title;
+    window.SetTitle(title);
+    window.UpdateForm();
   }
   
   public FormClass getWindow() {

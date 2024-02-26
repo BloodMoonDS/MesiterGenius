@@ -18,7 +18,7 @@ public class Input implements KeyListener, MouseListener,MouseMotionListener, Mo
 	
 	
 
-	private GameLoop gc = new GameLoop();
+	private GameLoop gc;
 	
 	private final int NUM_KEYS = 256;
 	private boolean[] keys =  new boolean[NUM_KEYS];
@@ -42,6 +42,8 @@ public class Input implements KeyListener, MouseListener,MouseMotionListener, Mo
 		gc.getWindow().getCanvas().addMouseWheelListener(this);
 	}
 	public void update() {
+		scroll = 0;
+		
 		for(int i = 0; i < NUM_KEYS; i++) {
 			keysLast[i] = keys[i];
 			
@@ -63,6 +65,18 @@ public class Input implements KeyListener, MouseListener,MouseMotionListener, Mo
 	public boolean isKeyUp(int KeyCode) {
 		
 		return !keys[KeyCode] && keysLast[KeyCode];
+	}
+	public boolean isButton(int button) {
+		
+		return buttons[button];
+	}
+	public boolean isisButtonDown(int button) {
+		
+		return buttons[button] && !buttonsLast[button];
+	}
+	public boolean isisButtonUp(int button) {
+		
+		return !buttons[button] && buttonsLast[button];
 	}
 	public void keyTyped(KeyEvent e) {
 		// TODO Auto-generated method stub

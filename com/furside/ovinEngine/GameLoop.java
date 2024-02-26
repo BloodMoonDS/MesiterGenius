@@ -1,18 +1,23 @@
 package com.furside.ovinEngine;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 import bx.generic.render.GenericRender;
 
 public class GameLoop implements Runnable {
   private GenericRender Bx_generic;
-  
-  private Thread thread;
-  
+  private Input inp;
+  public Input getInp() {
+	return inp;
+}
+
+private Thread thread;
+  private Abstract game;
   private FormClass window;
   
   public boolean running = false;
   
-  public final double FRAMERATE = 60.0D;
+  public final double FRAMERATE = 60;
   
   public final double UPDATE_CAP = 1.0/FRAMERATE;
   
@@ -22,14 +27,22 @@ public class GameLoop implements Runnable {
   
   public float scale = 2.0F;
   
-  public String title = "RealDreed Engine V0.0.0.1-experimental";
+  public String title = "RealDreed Engine";
   
-  public String iconDir= "assets/icon/icon.jpg"; // default Icon for program
+  public String iconDir= "assets/icon/icon.png"; // default Icon for program
+  
+  public GameLoop(Abstract game)
+  {
+	  this.game = game;
+	  
+  }
+  
   
   public void start() {
     this.window = new FormClass(this);
     this.thread = new Thread(this);
     this.Bx_generic = new GenericRender(this);
+    this.inp = new Input(this);
     this.thread.run();
   }
   
@@ -61,15 +74,22 @@ public class GameLoop implements Runnable {
       while (unprocessedTime >= UPDATE_CAP) {
         unprocessedTime -= UPDATE_CAP;
         render = true;
+       
+        game.update(this, (float)UPDATE_CAP);
+        inp.update();
+        
         if (frameTime >= 1.0D) {
           frameTime = 0.0D;
           fps = frames;
           frames = 0;
-          System.out.println("FPS :" + fps);
+          //System.out.println("FPS :" + fps);
+          
         } 
       } 
       if (render) {
         this.Bx_generic.clear();
+        game.render(this, Bx_generic);
+        this.Bx_generic.drawText("FPS: " + fps, 0, 0, 0xff00ffff);
         this.window.update();
         frames++;
         continue;
@@ -85,10 +105,6 @@ public class GameLoop implements Runnable {
   
   private void dispose() {}
   
-  public static void main(String[] args) {
-    GameLoop gc = new GameLoop();
-    gc.start();
-  }
   
   public int getWidth() {
     return this.width;

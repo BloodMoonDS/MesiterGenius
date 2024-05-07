@@ -30,8 +30,8 @@ public class GenericRender {
   }
   public void colorswitch() {
 	    for (int i = 0; i < this.p.length; i++) {
-	      this.p[i] = 0x000000; //clears the screen with a black background
-	      //this.p[i] = this.p[i] +i; //render testing doesn't do anything useful
+	      //this.p[i] = 0x000000; //clears the screen with a black background
+	      this.p[i] = this.p[i] +i; //render testing doesn't do anything useful
 	    }
 	  }
   public void SetPixel(int x, int y, int value) {

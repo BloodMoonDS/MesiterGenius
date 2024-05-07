@@ -13,7 +13,7 @@ public class GameManager extends Abstract {
 	
 	private Image image;
 	
-	private float playerX=160, playerY=120, speed=64;
+	private float playerX=64, playerY=64, speed=64;
 	
 	private Image bg;
 	
@@ -23,8 +23,8 @@ public class GameManager extends Abstract {
 	
 	public GameManager() 
 	{
-		image = new Image("/sprites/player1.png");
-		bg = new Image("/sprites/bg/Grass.png");
+		image = new Image("/sprites/Ship.png");
+		bg = new Image("/sprites/bg/Sky.png");
 		picture = new Image("/sprites/fakeBag.png");
 		Tile = new TiledImage("/sprites/player.png",16,16);
 	}
@@ -59,6 +59,7 @@ public class GameManager extends Abstract {
 		r.clear();
 		r.drawImage(bg,0,0);
 		r.drawImage(image, (int)playerX,(int)playerY);
+
 		//r.drawTiledImage(Tile, 0, 0, 1, 0);
 		if(gc.getInp().isKey(KeyEvent.VK_A)) 
 		{
@@ -66,6 +67,7 @@ public class GameManager extends Abstract {
 			//System.out.println("A Pressed");
 			r.drawImage(picture, 0, 0);
 		}
+		//r.colorswitch();
 	}
 	public static void main (String args[]) {
 		GameLoop gc = new GameLoop(new GameManager());

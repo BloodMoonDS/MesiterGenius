@@ -17,15 +17,15 @@ private Thread thread;
   
   public boolean running = false;
   
-  public final double FRAMERATE = 60;
+  public final double FRAMERATE = 128;
   
   public final double UPDATE_CAP = 1.0/FRAMERATE;
   
-  public int width = 320;
+  public int width = 128;
   
-  public int height = 240;
+  public int height = 128;
   
-  public float scale = 2.0F;
+  public float scale = 3F;
   
   public String title = "RealDreed Engine";
   
@@ -87,9 +87,9 @@ private Thread thread;
         } 
       } 
       if (render) {
-        this.Bx_generic.clear();
+        //this.Bx_generic.clear();
         game.render(this, Bx_generic);
-        this.Bx_generic.drawText("FPS: " + fps, 0, 0, 0xff00ffff);
+        this.Bx_generic.drawText("FPS: " + fps, 0, 0, 0xffffffff);
         this.window.update();
         frames++;
         continue;

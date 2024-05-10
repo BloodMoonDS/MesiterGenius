@@ -27,7 +27,7 @@ private Thread thread;
   
   public float scale = 3F;
   
-  public String title = "RealDreed Engine";
+  public String title = "GenericEngine v1.0";
   
   public String iconDir= "assets/icon/icon.png"; // default Icon for program
   
@@ -46,7 +46,7 @@ private Thread thread;
     this.thread.run();
   }
   
-  public void stop() {}
+  public void stop() {thread.stop();}
   
   public void run() {
 	try {

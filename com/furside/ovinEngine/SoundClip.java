@@ -25,7 +25,7 @@ public class SoundClip {
 			AudioFormat decodeFormat = new AudioFormat(
 					AudioFormat.Encoding.PCM_SIGNED,
 					baseformat.getSampleRate(),
-					9,
+					16,
 					baseformat.getChannels(),
 					baseformat.getChannels()*2,
 					baseformat.getSampleRate(),

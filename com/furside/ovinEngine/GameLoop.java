@@ -17,7 +17,7 @@ private Thread thread;
   
   public boolean running = false;
   
-  public final double FRAMERATE = 128;
+  public final double FRAMERATE = 90;
   
   public final double UPDATE_CAP = 1.0/FRAMERATE;
   

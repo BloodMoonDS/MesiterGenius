@@ -7,12 +7,16 @@ import javax.swing.JFrame;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import javax.swing.JFrame;
 import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
+
 import javax.swing.ImageIcon;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -25,6 +29,9 @@ public class FormClass extends JFrame {
     /**
 	 * 
 	 */
+	public BufferedImage cursorImg = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+	public Cursor blankCursor = this.getToolkit().createCustomCursor(
+		    cursorImg, new Point(0, 0), "blank cursor");
 	private static final long serialVersionUID = 1L;
 	public JFrame frame;
     public int SizeX=320;
@@ -100,6 +107,7 @@ public class FormClass extends JFrame {
   private Graphics g;
   
   public FormClass(GameLoop gc) {
+	this.setCursor(blankCursor);
     this.image = new BufferedImage(gc.getWidth(), gc.getHeight(), 1);
     this.canvas = new Canvas();
     Dimension s = new Dimension((int)(gc.getWidth() * gc.getScale()), (int)(gc.getHeight() * gc.getScale()));
@@ -131,7 +139,13 @@ public class FormClass extends JFrame {
   public Canvas getCanvas() {
     return this.canvas;
   }
-
+  public void HideCursor() {
+	  this.setCursor(blankCursor);
+	 
+  }
+  public void ShowCursor() {
+	  this.setCursor(Cursor.getDefaultCursor());
+  }
 }
 
 

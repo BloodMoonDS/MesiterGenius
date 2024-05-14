@@ -42,6 +42,13 @@ public class GenericRender {
 	  p[x + y * pW] = value;
 	  
   }
+  public void addcolor(int add) {
+	    for (int i = 0; i < this.p.length; i++) {
+	      //this.p[i] = 0x000000;
+	      //this.p[i] = this.p[i] +i;
+	    this.p[i] = this.p[i] + add; 
+	    }
+	  }
   
   public void drawImage(Image image,int offx,int offy) {
 	  //don't render if it is not on Screen

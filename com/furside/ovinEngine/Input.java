@@ -11,6 +11,8 @@ import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
+import javax.swing.JOptionPane;
+
 /**
  * 
  */
@@ -19,12 +21,12 @@ public class Input implements KeyListener, MouseListener,MouseMotionListener, Mo
 	
 
 	private GameLoop gc;
-	
+	public ExceptionHandler EH = new ExceptionHandler();
 	private final int NUM_KEYS = 256;
 	private boolean[] keys =  new boolean[NUM_KEYS];
 	private boolean[] keysLast =  new boolean[NUM_KEYS];
 	
-	private final int NUM_BUTTONS = 5;
+	private final int NUM_BUTTONS = 8;
 	private boolean[] buttons =  new boolean[NUM_BUTTONS];
 	private boolean[] buttonsLast =  new boolean[NUM_BUTTONS];
 	private int mouseX,mouseY;
@@ -97,20 +99,38 @@ public class Input implements KeyListener, MouseListener,MouseMotionListener, Mo
 
 	
 	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
+		try {
+			buttons[e.getButton()] = true;
+			}catch(ArrayIndexOutOfBoundsException e1){
+				JOptionPane.showMessageDialog(null, "ERROR: "+ e1 + "\n (I can't recognize that mouse button)");
+				FileSaver sav = new FileSaver();
+				sav.Writefile("Input Exception", "Exception: " + e1);
+				//e1.printStackTrace();
+			}
 	}
 
 	
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		buttons[e.getButton()] = true;
+		try {
+			buttons[e.getButton()] = true;
+			}catch(ArrayIndexOutOfBoundsException e1){
+				JOptionPane.showMessageDialog(null, "ERROR: "+ e1 + "\n (I can't recognize that mouse button)");
+				FileSaver sav = new FileSaver();
+				sav.Writefile("Input Exception", "Exception: " + e1);
+				//e1.printStackTrace();
+			}
+		
 	}
 
 	
 	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		buttons[e.getButton()] = false;
+		try {
+			buttons[e.getButton()] = true;
+			}catch(ArrayIndexOutOfBoundsException e1){
+				JOptionPane.showMessageDialog(null, "ERROR: "+ e1 + "\n (I can't recognize that mouse button)");
+				//e1.printStackTrace();
+			}
 	}
 
 	

@@ -14,10 +14,10 @@ public class GameLoop implements Runnable {
 private Thread thread;
   private Abstract game;
   private FormClass window;
-  
+  public SoundClip StartChime = new SoundClip("/sounds/snd_launch.wav");
   public boolean running = false;
   
-  public final double FRAMERATE = 90;
+  public final double FRAMERATE = 60;
   
   public final double UPDATE_CAP = 1.0/FRAMERATE;
   
@@ -33,12 +33,14 @@ private Thread thread;
   
   public GameLoop(Abstract game)
   {
+	  StartChime = new SoundClip("/sounds/snd_launch.wav");
 	  this.game = game;
 	  
   }
   
   
   public void start() {
+	StartChime.play();
     this.window = new FormClass(this);
     this.thread = new Thread(this);
     this.Bx_generic = new GenericRender(this);
@@ -65,6 +67,7 @@ private Thread thread;
     int frames = 0;
     int fps = 0;
     while (this.running) {
+    	
       render = false;
       firstTime = System.nanoTime() / 1.0E9D;
       passedTime = firstTime - lastTime;

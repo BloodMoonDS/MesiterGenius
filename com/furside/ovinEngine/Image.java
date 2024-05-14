@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JOptionPane;
 
 public class Image {
 	private int W,h;
@@ -12,11 +13,20 @@ public class Image {
 		
 		BufferedImage image = null;
 		
+		
 		try {
+		if(Image.class.getResourceAsStream(Path)==null) {
+			JOptionPane.showMessageDialog(null,Path + " Leads To a Null image \n");
+		}	
+		else {
 			image = ImageIO.read(Image.class.getResourceAsStream(Path));
+		}
 		} catch (IOException e) {
-			
+			SoundClip errsnd = new SoundClip("/sounds/snd_crash.wav");
+			JOptionPane.showMessageDialog(null,Path + " Caused an error Advanced Details: \n" + e);
 			System.out.println("Error While getting your Image");
+			FileSaver sav = new FileSaver();
+			sav.Writefile("Image Error", "Exception: " + e);
 			e.printStackTrace();
 		}
 		

@@ -11,6 +11,7 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JOptionPane;
 
 public class SoundClip {
 	private Clip clip = null;
@@ -38,6 +39,10 @@ public class SoundClip {
 			gainControl = (FloatControl)clip.getControl(FloatControl.Type.MASTER_GAIN);
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 			// TODO Auto-generated catch block
+			SoundClip snd = new SoundClip("/sounds/snd_error.wav");
+			JOptionPane.showMessageDialog(null,path + " Caused an error Advanced Details: \n" + e);
+			FileSaver sav = new FileSaver();
+			sav.Writefile("SoundClip Error", "Exception: " + e);
 			e.printStackTrace();
 		}
 	}
